@@ -1,23 +1,24 @@
-Pipeline{
-agent any
+pipeline {
+    agent any
 
-stages{
-stage('Checkout'){
-steps{
-git"https://github.com/ruhi14547/SecondAssignment.git"
-}
-}
-stages('Published'){
-steps{
-publishHTML([
-allowMissing:true,
-alwaysLinkToLastBuild:false,
-keepAll:false,
-reportDir:','
-reportFiles:'newhtml.html',
-reportName:'My html publish'
-])
-}
-}
-}
+    stages {
+        stage('Checkout') {
+            steps {
+                git "https://github.com/ruhi14547/SecondAssignment.git"
+            }
+        }
+
+        stage('Publish') {
+            steps {
+                publishHTML([
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: false,
+                    reportDir: '.',
+                    reportFiles: 'newhtml.html',
+                    reportName: 'My html Publish'
+                ])
+            }
+        }
+    }
 }
